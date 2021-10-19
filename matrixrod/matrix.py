@@ -4,6 +4,8 @@ import itertools as itt
 from fractions import Fraction
 from numbers import Number
 
+from .vector import Vector
+
 
 class Matrix():
     def __init__(self, list_of_lists):

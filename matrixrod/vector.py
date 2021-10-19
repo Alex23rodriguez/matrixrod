@@ -2,6 +2,8 @@ from fractions import Fraction
 import operator
 from numbers import Number
 
+from .matrix import Matrix
+
 
 class Vector():
     def __init__(self, iterable):
