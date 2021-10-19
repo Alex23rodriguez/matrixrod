@@ -271,7 +271,7 @@ class Matrix():
         """Return best x such that Ax = b."""
         return (A.T * A)**-1 * A.T * b
 
-    def solve(self, verbose=False):
+    def solve(self, verbose=False, return_matrix=False):
         A = self.copy()
 
         rows, cols = self.shape
@@ -292,7 +292,9 @@ class Matrix():
         if any(result.cols[-1][i] != 0 for i in range(cols - 1, rows)):
             print('inconsistent system of ecuations')
 
-        return result, result.cols[-1][:cols - 1]
+        if return_matrix:
+            return result, Vector(result.cols[-1][:cols - 1])
+        return Vector(result.cols[-1][:cols - 1])
 
     def interactive_pivot(self):
         i = 0
