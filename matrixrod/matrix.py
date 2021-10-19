@@ -1,4 +1,5 @@
-from functools import reduce, lru_cache, cached_property
+from functools import reduce, lru_cache
+# from functools import cached_property
 import operator
 import itertools as itt
 from fractions import Fraction
@@ -25,7 +26,6 @@ class Matrix():
 
     def __hash__(self):
         return hash(tuple(tuple(a for a in row) for row in self.m))
-
 
     def __add__(self, other):
         if type(other) is not Matrix:
@@ -95,7 +95,7 @@ class Matrix():
     def copy(self):
         return Matrix(self.m)
 
-    @cached_property  # requires python 3.8
+    # @cached_property  # requires python 3.8
     @property
     def shape(self):
         return len(self.m), len(self.m[0])
@@ -138,7 +138,7 @@ class Matrix():
         return m.determinant
     '''
 
-    @cached_property  # requires python 3.8
+    # @cached_property  # requires python 3.8
     @property
     def determinant(self):
         assert self.is_square, "determinant is only defined for square matrices"
@@ -148,7 +148,7 @@ class Matrix():
 
         return sum((-1)**j * self.m[0][j] * self.get_minor_for(0, j).determinant for j in range(s) if self.m[0][j] != 0)
 
-    @cached_property  # requires python 3.8
+    # @cached_property  # requires python 3.8
     @property
     def positive_definite(self):
         m, n = self.shape
@@ -204,7 +204,7 @@ class Matrix():
             rows[-1][i] = entries[i]
         return Matrix(rows)
 
-    @cached_property  # requires python 3.8
+    # @cached_property  # requires python 3.8
     @property
     def inverse(self):
         """Find the inverse of the matrix."""
