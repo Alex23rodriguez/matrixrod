@@ -10,6 +10,7 @@ from .vector import Vector
 
 class Matrix():
     def __init__(self, list_of_lists):
+        assert len(list_of_lists) > 0, "cannot create 0-th dimensional matrix"
         assert all(len(a) == len(
             list_of_lists[0]) for a in list_of_lists[1:]), 'every row must have the same amount of elements'
         self.m = [Vector(l) for l in list_of_lists]
@@ -122,7 +123,10 @@ class Matrix():
         return Matrix(self.cols)
 
     def filter(self, rows):
-        return Matrix([r for i, r in enumerate(self.rows) if i in rows])
+        m = [r for i, r in enumerate(self.rows) if i in rows]
+        if not m:
+            return None
+        return Matrix(m)
 
     @property
     def trace(self):

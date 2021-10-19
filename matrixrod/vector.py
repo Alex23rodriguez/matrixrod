@@ -6,6 +6,7 @@ from numbers import Number
 class Vector():
     def __init__(self, iterable):
         self.v = list(iterable)
+        assert len(self.v) > 0, "cannot create 0-th dimensional vector"
 
     def __str__(self):
         return str(self.v)
@@ -108,7 +109,10 @@ class Vector():
         return Vector([x] * n)
 
     def filter(self, entries):
-        return Vector([v for i, v in enumerate(self.v) if i in entries])
+        v = [v for i, v in enumerate(self.v) if i in entries]
+        if not v:
+            return None
+        return Vector(v)
 
     def evaluate(self, dict):
         ans = []
