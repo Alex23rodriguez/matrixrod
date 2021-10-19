@@ -7,8 +7,11 @@ class Vector():
     def __init__(self, iterable):
         self.v = list(iterable)
 
-    def __repr__(self):
+    def __str__(self):
         return str(self.v)
+
+    def __repr__(self):
+        return f"Vector({self.v})"
 
     def __len__(self):
         return len(self.v)

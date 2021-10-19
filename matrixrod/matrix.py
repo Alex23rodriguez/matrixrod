@@ -13,16 +13,19 @@ class Matrix():
             list_of_lists[0]) for a in list_of_lists[1:]), 'every row must have the same amount of elements'
         self.m = [Vector(l) for l in list_of_lists]
 
-    def __hash__(self):
-        return hash(tuple(tuple(a for a in row) for row in self.m))
-
-    @cached_property
-    def __repr__(self):
+    def __str__(self):
         if type(self.m[0][0]) is float:
             return '\n'.join(''.join(str(round(a, 3)).ljust(6) for a in r) for r in self.m).strip()
 
         justif = max((len(str(item)) for item in itt.chain(*self.m))) + 2
         return '\n'.join(''.join(str(a).ljust(justif) for a in r) for r in self.m).strip()
+
+    def __repr__(self):
+        return f"Matrix({[vec.v for vec in self.m]})"
+
+    def __hash__(self):
+        return hash(tuple(tuple(a for a in row) for row in self.m))
+
 
     def __add__(self, other):
         if type(other) is not Matrix:
