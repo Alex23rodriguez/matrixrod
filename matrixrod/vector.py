@@ -2,8 +2,6 @@ from fractions import Fraction
 import operator
 from numbers import Number
 
-from .matrix import Matrix
-
 
 class Vector():
     def __init__(self, iterable):
@@ -60,6 +58,7 @@ class Vector():
 
     @property
     def T(self):
+        from .matrix import Matrix
         return Matrix([self.v])
 
     def copy(self):
